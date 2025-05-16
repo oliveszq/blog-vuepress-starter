@@ -41,7 +41,7 @@ export default defineUserConfig({
       {
         text: "文档",
         children: [
-          { text: "vuepress-reco", link: "/docs/theme-reco/theme" },
+          { text: "问题笔记", link: "/docs/theme-reco/theme" },
           { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
         ],
       },
