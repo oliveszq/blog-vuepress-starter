@@ -10,12 +10,11 @@ export default defineUserConfig({
   title: 'olivesQ博客',
   // 站点描述
   description: '这是我的个人博客',
-  base: '/',
+
   bundler: viteBundler(),
   theme: recoTheme({
     logo: "/logo.png",
     author: "reco_luan",
-    authorAvatar: "/head.png",
     docsRepo: "https://github.com/vuepress-reco/vuepress-theme-reco-next",
     docsBranch: "main",
     docsDir: "example",
@@ -24,8 +23,8 @@ export default defineUserConfig({
     series: {
       "/docs/theme-reco/": [
         {
-          text: "module one",
-          children: ["home", "theme"],
+          text: "首页",
+          children: ["首页", "theme"],
         },
         {
           text: "module two",
