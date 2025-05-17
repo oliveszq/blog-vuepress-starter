@@ -2,14 +2,14 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main # 或 master，根据你的主分支名称调整
+      - main # 确保与你的主分支一致
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
