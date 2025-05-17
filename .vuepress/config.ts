@@ -7,12 +7,11 @@ export default defineUserConfig({
   // 设置站点语言为中文
   lang: 'zh-CN',
   // 站点标题
-  title: '我的博客',
+  title: 'olivesQ博客',
   // 站点描述
   description: '这是我的个人博客',
-
+  base: '/blog-vuepress-starter/',
   bundler: viteBundler(),
-  // bundler: webpackBundler(),
   theme: recoTheme({
     logo: "/logo.png",
     author: "reco_luan",
@@ -100,19 +99,5 @@ export default defineUserConfig({
         },
       ],
     },
-    // commentConfig: {
-    //   type: 'valine',
-    //   // options 与 1.x 的 valineConfig 配置一致
-    //   options: {
-    //     // appId: 'xxx',
-    //     // appKey: 'xxx',
-    //     // placeholder: '填写邮箱可以收到回复提醒哦！',
-    //     // verify: true, // 验证码服务
-    //     // notify: true,
-    //     // recordIP: true,
-    //     // hideComments: true // 隐藏评论
-    //   },
-    // },
   }),
-  // debug: true,
 });
