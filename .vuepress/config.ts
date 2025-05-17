@@ -10,7 +10,7 @@ export default defineUserConfig({
   title: 'olivesQ博客',
   // 站点描述
   description: '这是我的个人博客',
-  base: '/blog-vuepress-starter/',
+  base: '/',
   bundler: viteBundler(),
   theme: recoTheme({
     logo: "/logo.png",
