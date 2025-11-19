@@ -19,16 +19,26 @@
       >
         <div class="article-content">
           <h3 class="article-title">{{ article.title }}</h3>
-          <p class="article-excerpt">{{ article.excerpt || '暂无摘要' }}</p>
-          <div class="article-meta">
+          <div class="article-author-line">
+            <span class="article-author" v-if="getAuthor(article)">
+              <i class="icon-user"></i>
+              {{ getAuthor(article) }}
+            </span>
+            <span class="article-dot" v-if="getAuthor(article) && formatDate(article.date)">·</span>
             <span class="article-date">
               <i class="icon-calendar"></i>
               {{ formatDate(article.date) }}
             </span>
+          </div>
+          <p class="article-excerpt">{{ article.excerpt || '暂无摘要' }}</p>
+          <div class="article-meta">
             <span class="article-category" v-if="article.categories">
               <i class="icon-folder"></i>
               {{ article.categories[0] }}
             </span>
+          </div>
+          <div class="article-tags" v-if="Array.isArray(article.tags) && article.tags.length">
+            <span class="tag-chip" v-for="t in article.tags" :key="t" @click.stop="goToTag(t)"># {{ t }}</span>
           </div>
         </div>
       </div>
@@ -47,89 +57,105 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'TagPage',
-  data() {
-    return {
-      tagName: '',
-      articles: []
-    }
-  },
-  mounted() {
-    this.loadTagData()
-  },
-  methods: {
-    loadTagData() {
-      // 从当前路径获取标签名
-      const path = this.$route.path
-      const match = path.match(/\/tags\/([^\/]+)\/\d+\.html/)
-      if (match) {
-        this.tagName = match[1]
-        this.loadArticles()
+<script setup>
+import { ref, onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { usePagesData } from '@vuepress/client'
+import { useSiteData } from '@vuepress/client'
+
+const route = useRoute()
+const router = useRouter()
+const tagName = ref('')
+const articles = ref([])
+const siteData = useSiteData()
+
+function parseTagFromPath(path) {
+  const match = path.match(/\/tags\/([^\/]+)\//)
+  return match ? decodeURIComponent(match[1]) : ''
+}
+
+async function loadArticlesByTag(currentTag) {
+  const pagesData = usePagesData()
+  const loaders = Object.entries(pagesData)
+  const results = await Promise.all(
+    loaders.map(async ([path, loader]) => {
+      try {
+        const data = await loader()
+        return { path, data }
+      } catch (_) {
+        return null
       }
-    },
-    
-    loadArticles() {
-      // 模拟文章数据，实际应该从主题数据中获取
-      const mockArticles = this.getMockArticles()
-      this.articles = mockArticles.filter(article => 
-        article.tags && article.tags.includes(this.tagName)
-      )
-    },
-    
-    getMockArticles() {
-      return [
-        {
-          path: '/blogs/bug笔记/2018/121501.html',
-          title: 'JavaScript 闭包问题排查',
-          date: '2018-12-15',
-          tags: ['javascript', '闭包', 'bug修复', '前端开发'],
-          categories: ['bug笔记'],
-          excerpt: '深入分析 JavaScript 闭包常见问题及解决方案'
-        },
-        {
-          path: '/blogs/bug笔记/2019/092101.html',
-          title: 'Vue 组件通信问题解决',
-          date: '2019-09-21',
-          tags: ['vue', '组件通信', '问题排查', '前端开发'],
-          categories: ['bug笔记'],
-          excerpt: 'Vue 组件间通信的常见问题及最佳实践'
-        },
-        {
-          path: '/blogs/technique/2016/121501.html',
-          title: 'CSS 布局技巧分享',
-          date: '2016-12-15',
-          tags: ['css', '布局技巧', '前端开发', '最佳实践'],
-          categories: ['小技巧'],
-          excerpt: 'CSS 布局的实用技巧和最佳实践'
-        },
-        {
-          path: '/blogs/technique/2017/092101.html',
-          title: 'Git 高级使用技巧',
-          date: '2017-09-21',
-          tags: ['git', '版本控制', '开发工具', '高级技巧'],
-          categories: ['小技巧'],
-          excerpt: 'Git 高级功能的使用技巧和最佳实践'
-        }
-      ]
-    },
-    
-    goToArticle(path) {
-      this.$router.push(path)
-    },
-    
-    formatDate(dateString) {
-      if (!dateString) return '未知日期'
-      const date = new Date(dateString)
-      return date.toLocaleDateString('zh-CN', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
+    })
+  )
+  console.log("pagesData", pagesData);
+  console.log("loaders", loaders);
+  console.log("results", results);
+  const items = (results.filter(Boolean)).map(({ path, data }) => {
+    return {
+      path,
+      title: data.title || (data.frontmatter && data.frontmatter.title) || '',
+      date: data.frontmatter && data.frontmatter.date,
+      tags: (data.frontmatter && data.frontmatter.tags) || [],
+      categories: (data.frontmatter && data.frontmatter.categories) || [],
+      excerpt: data.excerpt || (data.frontmatter && (data.frontmatter.description || data.frontmatter.summary)) || ''
+    }
+  })
+  .filter(item => item.path.startsWith('/blogs/') || item.path.startsWith('/series/'))
+  .filter(item => Array.isArray(item.tags) && item.tags.includes(currentTag))
+  .sort((a, b) => {
+    const ad = a.date ? new Date(a.date).getTime() : 0
+    const bd = b.date ? new Date(b.date).getTime() : 0
+    return bd - ad
+  })
+
+  articles.value = items
+}
+
+function goToArticle(path) {
+  router.push(path)
+}
+
+function formatDate(dateString) {
+  if (!dateString) return '未知日期'
+  const date = new Date(dateString)
+  return date.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+
+function getAuthor(article) {
+  if (article && article.author) return article.author
+  const fmAuthor = article && article.frontmatter && article.frontmatter.author
+  if (fmAuthor) return fmAuthor
+  const themeAuthor = siteData.value && siteData.value.themeConfig && siteData.value.themeConfig.author
+  return themeAuthor || ''
+}
+
+function goToTag(tag) {
+  if (!tag) return
+  router.push(`/tags/${encodeURIComponent(tag)}/1.html`)
+}
+
+onMounted(async () => {
+  tagName.value = parseTagFromPath(route.path)
+  if (tagName.value) {
+    await loadArticlesByTag(tagName.value)
+  }
+})
+
+watch(
+  () => route.path,
+  async (newPath) => {
+    const newTag = parseTagFromPath(newPath)
+    if (newTag && newTag !== tagName.value) {
+      tagName.value = newTag
+      await loadArticlesByTag(tagName.value)
     }
   }
-}
+)
+
 </script>
 
 <style scoped>
@@ -203,6 +229,19 @@ export default {
   line-height: 1.6;
 }
 
+.article-author-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.article-author-line .article-dot {
+  color: #9ca3af;
+}
+
 .article-meta {
   display: flex;
   gap: 1rem;
@@ -214,6 +253,29 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+}
+
+.article-tags {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tag-chip:hover {
+  background: #e5e7eb;
 }
 
 .article-meta i {

@@ -1,8 +1,3 @@
----
-title: 标签总览
-editLink: false
-pageToc: false
----
 
 <tags-SmartTagCloud />
 

@@ -1,5 +1,5 @@
-import comp from "D:/order/blog/blog-vuepress-starter/docs/.vuepress/.temp/pages/categories/index.html.vue"
-const data = JSON.parse("{\"path\":\"/categories/\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[],\"git\":{\"createdTime\":null,\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"categories/README.md\"}")
+import comp from "E:/project/olives-blog/blog-vuepress-starter/docs/.vuepress/.temp/pages/categories/index.html.vue"
+const data = JSON.parse("{\"path\":\"/categories/\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[],\"git\":{\"createdTime\":1761925832000,\"updatedTime\":1761925832000,\"contributors\":[{\"name\":\"xiaoqingxx\",\"email\":\"2783123570@qq.com\",\"commits\":1}]},\"filePathRelative\":\"categories/README.md\"}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

@@ -110,6 +110,7 @@ export default {
             name,
             count
           }))
+          console.log("this.allTags", this.allTags);
         }
       } catch (error) {
         console.log('无法从主题数据加载标签，使用默认标签')

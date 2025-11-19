@@ -27,28 +27,30 @@ export default defineUserConfig({
     docsBranch: "main",
     docsDir: "docs",
     lastUpdatedText: "最后更新",
+    catalogTitle: "页面导航",
     
     // 编辑链接设置
     editLink: true,
     editLinkText: "编辑此页",
     editLinkPattern: ":repo/edit/:branch/:path",
     // series 为原 sidebar
-    series: {
-      "/categories/": [
-        {
-          text: "首页",
-          children: ["home", "theme"],
-        },
-        {
-          text: "module two",
-          children: ["api", "plugin"],
-        },
-      ],
-    },
+    // series: {
+      // "/categories/": [
+      //   {
+      //     text: "首页",
+      //     children: ["home", "theme"],
+      //   },
+      //   {
+      //     text: "module two",
+      //     children: ["api", "plugin"],
+      //   },
+      // ],
+    // },
     navbar: [
       { text: "首页", link: "/", icon: 'IconHome' }, 
-      { text: "分类", link: "/categories/" },
-      { text: "标签", link: "/tags/" },
+      { text: '博客', link: '/posts', icon: 'IconDocumentAttachment' },
+      { text: "分类", link: "/categories/", icon: 'IconCategory' },
+      { text: "标签", link: "/tags/", icon: 'IconTag' },
       {
         text: "文档",
         children: [

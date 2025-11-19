@@ -1,4 +1,4 @@
-import comp from "D:/order/blog/blog-vuepress-starter/docs/.vuepress/.temp/pages/friendship-link.html.vue"
+import comp from "E:/project/olives-blog/blog-vuepress-starter/docs/.vuepress/.temp/pages/friendship-link.html.vue"
 const data = JSON.parse("{\"path\":\"/friendship-link.html\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{\"layout\":\"FriendshipLink\"},\"headers\":[],\"git\":{},\"filePathRelative\":null}")
 export { comp, data }
 

@@ -7,7 +7,7 @@ import {
   TabItem,
   VuePreview,
   Xicons
-} from "./chunk-2Y2RDPX7.js";
+} from "./chunk-3T5WMWGG.js";
 import "./chunk-UVKRO5ER.js";
 export {
   Badge,

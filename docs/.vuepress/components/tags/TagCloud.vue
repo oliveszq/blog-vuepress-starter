@@ -18,42 +18,82 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'TagCloud',
-  data() {
-    return {
-      tags: [
-        { name: 'tag1', size: 'large', color: '#3b82f6' },
-        { name: 'tag2', size: 'medium', color: '#f59e0b' },
-        { name: 'tag3', size: 'small', color: '#10b981' },
-        { name: 'tag4', size: 'large', color: '#ef4444' },
-        { name: 'html', size: 'medium', color: '#8b5cf6' },
-        { name: 'css', size: 'small', color: '#06b6d4' },
-        { name: 'javascript', size: 'large', color: '#f97316' },
-        { name: 'vue', size: 'medium', color: '#84cc16' },
-        { name: 'nodejs', size: 'small', color: '#ec4899' },
-        { name: 'react', size: 'medium', color: '#6366f1' },
-        { name: 'typescript', size: 'small', color: '#14b8a6' },
-        { name: 'python', size: 'large', color: '#f59e0b' },
-        { name: 'java', size: 'medium', color: '#ef4444' },
-        { name: 'mysql', size: 'small', color: '#3b82f6' },
-        { name: 'mongodb', size: 'medium', color: '#10b981' },
-        { name: 'docker', size: 'small', color: '#8b5cf6' },
-        { name: 'git', size: 'medium', color: '#f97316' },
-        { name: 'linux', size: 'large', color: '#06b6d4' },
-        { name: 'algorithm', size: 'small', color: '#84cc16' },
-        { name: 'design', size: 'medium', color: '#ec4899' }
-      ]
-    }
-  },
-  methods: {
-    goToTag(tagName) {
-      // 跳转到对应的标签页面
-      this.$router.push(`/tags/${tagName}/1.html`)
-    }
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { usePagesData } from '@vuepress/client'
+
+const router = useRouter()
+const tags = ref([])
+
+function colorFor(tag) {
+  const palette = [
+    '#3b82f6', '#f59e0b', '#10b981', '#ef4444', '#8b5cf6',
+    '#06b6d4', '#f97316', '#84cc16', '#ec4899', '#6366f1',
+    '#14b8a6'
+  ]
+  let hash = 0
+  for (let i = 0; i < tag.length; i++) {
+    hash = (hash << 5) - hash + tag.charCodeAt(i)
+    hash |= 0
   }
+  const idx = Math.abs(hash) % palette.length
+  return palette[idx]
 }
+
+function sizeFor(count, max) {
+  if (count >= Math.max(3, Math.ceil(max * 0.66))) return 'large'
+  if (count >= Math.max(2, Math.ceil(max * 0.33))) return 'medium'
+  return 'small'
+}
+
+async function buildTags() {
+  const pagesData = usePagesData()
+  const loaders = Object.entries(pagesData)
+  const results = await Promise.all(
+    loaders.map(async ([path, loader]) => {
+      try {
+        const data = await loader()
+        return { path, data }
+      } catch (_) {
+        return null
+      }
+    })
+  )
+
+  const entries = results
+    .filter(Boolean)
+    .filter(({ path }) => path.startsWith('/blogs/') || path.startsWith('/series/'))
+    .map(({ data }) => Array.isArray(data?.frontmatter?.tags) ? data.frontmatter.tags : [])
+    .flat()
+    .filter(t => typeof t === 'string' && t.trim().length > 0)
+    .map(t => t.trim())
+
+  const counter = new Map()
+  for (const t of entries) {
+    counter.set(t, (counter.get(t) || 0) + 1)
+  }
+
+  const maxCount = [...counter.values()].reduce((m, v) => Math.max(m, v), 0)
+  const list = [...counter.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([name, count]) => ({
+      name,
+      size: sizeFor(count, maxCount),
+      color: colorFor(name)
+    }))
+
+  tags.value = list
+}
+
+function goToTag(tagName) {
+  if (!tagName) return
+  router.push(`/tags/${encodeURIComponent(tagName)}/1.html`)
+}
+
+onMounted(async () => {
+  await buildTags()
+})
 </script>
 
 <style scoped>

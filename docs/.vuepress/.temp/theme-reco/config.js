@@ -2,10 +2,10 @@
   import { defineAsyncComponent } from 'vue'
 import { defineClientConfig } from 'vuepress/client'
 
-import { applyClientSetup } from 'D:/order/blog/blog-vuepress-starter/node_modules/vuepress-theme-reco/lib/client/clientSetup.js'
-import { applyClientEnhance } from 'D:/order/blog/blog-vuepress-starter/node_modules/vuepress-theme-reco/lib/client/clientEnhance.js'
+import { applyClientSetup } from 'E:/project/olives-blog/blog-vuepress-starter/node_modules/vuepress-theme-reco/lib/client/clientSetup.js'
+import { applyClientEnhance } from 'E:/project/olives-blog/blog-vuepress-starter/node_modules/vuepress-theme-reco/lib/client/clientEnhance.js'
 
-import * as layouts from 'D:/order/blog/blog-vuepress-starter/node_modules/vuepress-theme-reco/lib/client/layouts/index.js'
+import * as layouts from 'E:/project/olives-blog/blog-vuepress-starter/node_modules/vuepress-theme-reco/lib/client/layouts/index.js'
 
   const layoutsFromDir = {}
 export default defineClientConfig({

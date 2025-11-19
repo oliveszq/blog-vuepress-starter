@@ -30,14 +30,14 @@ export const SEARCH_INDEX = [
   {
     "title": "",
     "headers": [],
-    "path": "/categories/qianduanyouhua/1.html",
+    "path": "/categories/bugbiji/1.html",
     "pathLocale": "/",
     "extraFields": []
   },
   {
     "title": "",
     "headers": [],
-    "path": "/categories/bugbiji/1.html",
+    "path": "/categories/qianduanyouhua/1.html",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -175,13 +175,6 @@ export const SEARCH_INDEX = [
     "extraFields": []
   },
   {
-    "title": "实践",
-    "headers": [],
-    "path": "/shijian.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "",
     "headers": [],
     "path": "/categories/",
@@ -275,7 +268,7 @@ export const SEARCH_INDEX = [
     "extraFields": []
   },
   {
-    "title": "标签总览",
+    "title": "",
     "headers": [
       {
         "level": 2,
@@ -293,41 +286,6 @@ export const SEARCH_INDEX = [
     "title": "标签 - Vue",
     "headers": [],
     "path": "/tags/vue.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "api",
-    "headers": [],
-    "path": "/theme-reco/api.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "theme-reco",
-    "headers": [],
-    "path": "/theme-reco/home.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "plugin",
-    "headers": [],
-    "path": "/theme-reco/plugin.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "1、使用git将本地代码上传到远程仓库！",
-    "headers": [],
-    "path": "/theme-reco/theme.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Vue 学习",
-    "headers": [],
-    "path": "/xuexi/vue.html",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -412,6 +370,20 @@ export const SEARCH_INDEX = [
     "extraFields": []
   },
   {
+    "title": "文章标题",
+    "headers": [],
+    "path": "/series/xilie1/wendang1.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "",
+    "headers": [],
+    "path": "/series/xilie2/wendang2.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "JavaScript 闭包问题排查",
     "headers": [],
     "path": "/blogs/bugbiji/2018/121501.html",
@@ -422,13 +394,6 @@ export const SEARCH_INDEX = [
     "title": "Vue 组件通信问题解决",
     "headers": [],
     "path": "/blogs/bugbiji/2019/092101.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "CSS 布局技巧分享",
-    "headers": [],
-    "path": "/blogs/technique/2016/121501.html",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -553,7 +518,14 @@ export const SEARCH_INDEX = [
         "children": []
       }
     ],
-    "path": "/blogs/qianduanyouhua/2024/performance-optimization.html",
+    "path": "/blogs/bugbiji/2024/performance-optimization.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "CSS 布局技巧分享",
+    "headers": [],
+    "path": "/blogs/technique/2016/121501.html",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -685,7 +657,7 @@ export const SEARCH_INDEX = [
         "children": []
       }
     ],
-    "path": "/blogs/bugbiji/2024/performance-optimization.html",
+    "path": "/blogs/qianduanyouhua/2024/performance-optimization.html",
     "pathLocale": "/",
     "extraFields": []
   },
