@@ -1,8 +1,11 @@
 import { defineUserConfig } from "vuepress";
 import recoTheme from "vuepress-theme-reco";
 import { viteBundler } from '@vuepress/bundler-vite'
+import { getDirname, path } from '@vuepress/utils'
 import { themeConfig } from './config/index'
 import { blogPagePlugin } from './plugin-blog-page-filter'
+
+const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
   // 设置站点语言为中文
@@ -22,6 +25,10 @@ export default defineUserConfig({
 
   bundler: viteBundler(),
     // bundler: webpackBundler(),
+  
+  // 配置 client 文件以注册自定义组件
+  clientConfigFile: path.resolve(__dirname, './client.ts'),
+  
   // 添加自定义插件
   plugins: [
     blogPagePlugin({
