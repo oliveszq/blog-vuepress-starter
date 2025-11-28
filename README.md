@@ -2,48 +2,21 @@
 home: true
 modules:
   - BannerBrand
-  - Blog
+  - blog
   - MdContent
   - Footer
 bannerBrand:
   bgImage: '/bg.svg'
-  title: vuepress-reco
-  description: 一款简洁的 vuepress 博客 & 文档 主题。
-  tagline: vuepress-theme-reco 2.0 继续坚持简洁的风格，所有功能开箱即用，首页模块化组装，使用 tailwindcss 书写样式，将 Vite 作为默认编译器。你只需要负责内容创作，其他请交给我。
+  title: olivesQ博客
+  description: 记录每一步成长，点亮每一刻灵感。
+  tagline: 这是一个专注于技术分享、学习记录与个人成长的博客平台。在这里，你会看到博主在编程、开发经验、项目实践以及日常思考中的点滴积累。无论是前端后端、工具使用还是人生感悟，我们都希望为你带来有价值的内容。
   buttons:
-    - { text: Guide, link: '/docs/guide/introduce' }
-    - { text: Default Style, link: '/docs/style-default-api/introduce', type: 'plain' }
+    - { text: 开始阅读, link: '/posts' }
+    - { text: 文档系列, link: '/series/', type: 'plain' }
   socialLinks:
     - { icon: 'LogoGithub', link: 'https://github.com/vuepress-reco/vuepress-theme-reco' }
 blog:
   socialLinks:
-    - { icon: 'LogoGithub', link: 'https://github.com/recoluan' }
+    - { icon: 'LogoGithub', link: 'https://github.com/oliveszq' }
 isShowTitleInHome: true
-actionText: About
-actionLink: /views/other/about
 ---
-
-## 快速开始
-
-**npx**
-
-```bash
-# 初始化，并选择 2.x
-npx @vuepress-reco/theme-cli init
-```
-
-**npm**
-
-```bash
-# 初始化，并选择 2.x
-npm install @vuepress-reco/theme-cli@1.0.7 -g
-theme-cli init
-```
-
-**yarn**
-
-```bash
-# 初始化，并选择 2.x
-yarn global add @vuepress-reco/theme-cli@1.0.7
-theme-cli init
-```
