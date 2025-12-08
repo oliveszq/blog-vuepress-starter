@@ -4,7 +4,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { getDirname, path } from '@vuepress/utils'
 import { themeConfig } from './config/index'
 import { blogPagePlugin } from './plugin-blog-page-filter'
-
+import { sakura } from '@anyfork/vuepress-plugin-sakura-next'
 const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
@@ -33,7 +33,16 @@ export default defineUserConfig({
   plugins: [
     blogPagePlugin({
       catalogueInclude: ['blogs', 'docs']
-    })
+    }),
+    sakura({
+      // 设置数量 默认 20
+      sakura_num: 20,
+      //是否显示，默认：true
+      sakura_show: true,
+      //层叠z-index值,默认：100，设置为-1确保在背景层
+      sakura_zindex: 100,
+      sakura_img: '/mapleLeaf.png'
+    }) as any
   ],
   theme: recoTheme(themeConfig),
 });

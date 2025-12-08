@@ -1,11 +1,30 @@
-ul {
-    diplay: flex;
-    align-items: center;
-    list-style: none;
-    li {
-      text-align: center;
-      font-size: 16px;
-      color: black;
-    }
-  }
-  
+/* 全局背景插件效果：为整个站点添加一层柔和的 SVG 背景 */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  /* 使用 .vuepress/public 下的 tree.png 作为背景 */
+  background-image: url("/tree.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+/* 让内容区域有半透明白底，保证可读性 */
+#app {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* 设置 BannerBrand 中 description 和 tagline 的字体颜色为白色 */
+.banner-brand .description,
+.banner-brand .tagline,
+.home .description,
+.home .tagline,
+[class*="banner"] .description,
+[class*="banner"] .tagline {
+  color: white !important;
+}
+
