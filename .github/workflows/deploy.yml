@@ -10,18 +10,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 读取仓库内容
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: 安装 Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: yarn
 
-      - name: 安装依赖和项目打包
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install deps and build
         run: |
-          npm install
-          npm run build
+          yarn install --immutable
+          yarn build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
