@@ -15,6 +15,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      # 先启用 Corepack，避免 setup-node 的 yarn 缓存探测使用 Yarn 1 失败
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@4.12.0 --activate
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
