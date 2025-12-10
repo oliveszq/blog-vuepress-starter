@@ -6,8 +6,12 @@ import { themeConfig } from './config/index'
 import { blogPagePlugin } from './plugin-blog-page-filter'
 import { sakuraFixed } from './plugins/sakura-fixed'
 const __dirname = getDirname(import.meta.url)
+const isProd = process.env.NODE_ENV === 'production'
 
 export default defineUserConfig({
+  // GitHub Pages 仓库路径： https://<user>.github.io/<repo>/
+  // 本地开发保持根路径，生产构建使用仓库名作为 base
+  base: isProd ? '/blog-vuepress-starter/' : '/',
   // 设置站点语言为中文
   lang: 'zh-CN',
   // 站点标题
