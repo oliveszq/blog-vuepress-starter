@@ -4,7 +4,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { getDirname, path } from '@vuepress/utils'
 import { themeConfig } from './config/index'
 import { blogPagePlugin } from './plugin-blog-page-filter'
-import { sakura } from '@anyfork/vuepress-plugin-sakura-next'
+import { sakuraFixed } from './plugins/sakura-fixed'
 const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
@@ -34,7 +34,7 @@ export default defineUserConfig({
     blogPagePlugin({
       catalogueInclude: ['blogs', 'docs']
     }),
-    sakura({
+    sakuraFixed({
       // 设置数量 默认 20
       sakura_num: 20,
       //是否显示，默认：true
