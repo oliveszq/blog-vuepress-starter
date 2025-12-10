@@ -12,10 +12,4 @@ export const navbar: RecoThemeData['navbar'] = [
     ],
   },
   { text: '时间轴', link: '/timeline', icon: 'IconTimeLine' },
-  {
-    text: "灵机一动小问题", children: [
-      { text: "bug笔记", link: "/blogs/bug笔记" },
-      { text: "小技巧", link: "/blogs/technique" },
-    ],
-  }
 ]

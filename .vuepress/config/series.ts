@@ -11,7 +11,7 @@ export const series = {
     },
     {
       text: '基础语法',
-      collapsible: true,
+      collapsible: false,
       children: [
         '02-basic-syntax/01-variables',
         '02-basic-syntax/02-data-types',
@@ -22,7 +22,7 @@ export const series = {
     },
     {
       text: '面向对象编程',
-      collapsible: true,
+      collapsible: false,
       children: [
         '03-object-oriented/01-oop-concepts',
         '03-object-oriented/02-classes-and-objects',
@@ -34,7 +34,7 @@ export const series = {
     },
     {
       text: '核心 API',
-      collapsible: true,
+      collapsible: false,
       children: [
         '04-core-api/01-string',
         '04-core-api/02-wrapper-types',
@@ -45,7 +45,7 @@ export const series = {
     },
     {
       text: '集合框架',
-      collapsible: true,
+      collapsible: false,
       children: [
         '05-collections/01-collection-overview',
         '05-collections/02-list',
@@ -56,7 +56,7 @@ export const series = {
     },
     {
       text: '泛型编程',
-      collapsible: true,
+      collapsible: false,
       children: [
         '06-generics/01-why-generics',
         '06-generics/02-generic-methods'
@@ -64,7 +64,7 @@ export const series = {
     },
     {
       text: '多线程与并发',
-      collapsible: true,
+      collapsible: false,
       children: [
         '07-multithreading/01-thread-basics',
         '07-multithreading/02-runnable',
@@ -76,7 +76,7 @@ export const series = {
     },
     {
       text: 'JVM 工作原理',
-      collapsible: true,
+      collapsible: false,
       children: [
         '08-jvm/01-jvm-architecture',
         '08-jvm/02-class-loading',
@@ -87,7 +87,7 @@ export const series = {
     },
     {
       text: 'Java 8 新特性',
-      collapsible: true,
+      collapsible: false,
       children: [
         '09-java8-features/01-lambda',
         '09-java8-features/02-stream',
@@ -96,7 +96,7 @@ export const series = {
     },
     {
       text: 'Spring 全家桶',
-      collapsible: true,
+      collapsible: false,
       children: [
         '10-spring/01-spring-ioc',
         '10-spring/02-spring-aop',
@@ -106,7 +106,7 @@ export const series = {
     },
     {
       text: '数据库与持久化',
-      collapsible: true,
+      collapsible: false,
       children: [
         '11-database/01-jdbc',
         '11-database/02-mybatis',
@@ -115,7 +115,7 @@ export const series = {
     },
     {
       text: '项目实战',
-      collapsible: true,
+      collapsible: false,
       children: [
         '12-project/01-project-env',
         '12-project/02-backend-api-design',
