@@ -13,6 +13,8 @@ export const themeConfig: RecoThemeData = {
   colorModeSwitch: true, // 是否展示颜色模式开关，默认 true
   lastUpdatedText: "最后更新",
   catalogTitle: "页面导航",
+  categoriesText: "分类",
+  tagsText: "标签",
   notFound: '哇哦，没有发现这个页面！',
   // 编辑链接设置
   editLink: false,
