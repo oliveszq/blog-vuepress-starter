@@ -1,6 +1,14 @@
 ---
 title: Java 发展简史
 date: 2024-11-25
+tags:
+ - Java
+ - 发展简史
+ - 里程碑版本
+ - 生态演进
+ - 现在的趋势
+categories:
+ - Java 自学系列
 ---
 
 # Java 发展简史

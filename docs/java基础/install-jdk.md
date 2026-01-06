@@ -1,6 +1,12 @@
 ---
 title: 安装 JDK
 date: 2024-11-25
+tags:
+ - Java
+ - 安装
+ - JDK
+categories:
+ - Java 自学系列
 ---
 
 # 安装 JDK

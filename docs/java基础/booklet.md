@@ -1,10 +1,10 @@
 ---
 title: 小册简介
 date: 2024-11-25
-categories:
- - article
 tags:
  - Java
+categories:
+ - Java 自学系列
 ---
 
 # 小册简介

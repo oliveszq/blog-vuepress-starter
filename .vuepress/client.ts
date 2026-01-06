@@ -5,6 +5,7 @@ import IconTimeLine from './components/IconTimeLine.vue'
 import IconCategory from './components/IconCategory.vue'
 import IconTag from './components/IconTag.vue'
 import IconSeries from './components/IconSeries.vue'
+import CustomFooter from './components/CustomFooter.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -15,5 +16,6 @@ export default defineClientConfig({
     app.component('IconCategory', IconCategory)
     app.component('IconTag', IconTag)
     app.component('IconSeries', IconSeries)
+    app.component('CustomFooter', CustomFooter)
   },
 })

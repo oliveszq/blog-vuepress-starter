@@ -1,6 +1,11 @@
 ---
 title: Java 简介
 date: 2024-11-25
+tags:
+ - Java
+ - 简介
+categories:
+ - Java 自学系列
 ---
 
 # Java 简介

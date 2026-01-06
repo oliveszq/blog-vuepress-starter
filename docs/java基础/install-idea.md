@@ -1,6 +1,12 @@
 ---
 title: 安装 IntelliJ IDEA
 date: 2024-11-25
+tags:
+ - Java
+ - 安装
+ - 工具推荐
+categories:
+ - Java 自学系列
 ---
 
 # 安装 IntelliJ IDEA

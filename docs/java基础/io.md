@@ -1,6 +1,16 @@
 ---
 title: 2.6 Java IO
 date: 2024-11-25
+tags:
+ - Java
+ - IO
+ - 字节流
+ - 字符流
+ - 缓冲流
+ - NIO
+ - 序列化
+categories:
+ - Java 自学系列
 ---
 
 # Java IO

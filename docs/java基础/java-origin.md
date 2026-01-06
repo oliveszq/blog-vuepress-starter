@@ -1,6 +1,13 @@
 ---
 title: Java 由来
 date: 2024-11-25
+tags:
+ - Java
+ - 由来
+ - 设计理念
+ - 当下意义
+categories:
+ - Java 自学系列
 ---
 
 # Java 由来

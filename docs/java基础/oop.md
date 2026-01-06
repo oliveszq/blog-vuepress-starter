@@ -1,6 +1,11 @@
 ---
 title: 2.4 面向对象编程
 date: 2024-11-25
+tags:
+ - Java
+ - 面向对象
+categories:
+ - Java 自学系列
 ---
 
 # 面向对象编程

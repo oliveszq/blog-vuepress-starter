@@ -1,6 +1,10 @@
 ---
 title: 第一个 Java 程序
 date: 2024-11-25
+tags:
+ - Java
+categories:
+ - Java 自学系列
 ---
 
 # 第一个 Java 程序

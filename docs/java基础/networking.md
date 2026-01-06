@@ -1,6 +1,11 @@
 ---
 title: 2.10 网络编程
 date: 2024-11-25
+tags:
+ - Java
+ - 网络编程
+categories:
+ - Java 自学系列
 ---
 
 # 网络编程

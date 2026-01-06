@@ -1,6 +1,11 @@
 ---
 title: 2.9 Java 新特性
 date: 2024-11-25
+tags:
+ - Java
+ - Java 新特性
+categories:
+ - Java 自学系列
 ---
 
 # Java 新特性

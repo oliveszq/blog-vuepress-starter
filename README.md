@@ -4,7 +4,7 @@ modules:
   - BannerBrand
   - blog
   - MdContent
-  - Footer
+  - CustomFooter
 bannerBrand:
   bgImage: '/bg1.gif'
   title: olivesQ博客

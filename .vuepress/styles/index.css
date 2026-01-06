@@ -98,6 +98,17 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  /* 当标签过多时，限制高度并允许滚动 */
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 4px; /* 预留一点空间给滚动条，防止遮挡 */
+}
+
+/* 移动端适当减小高度，避免占满屏幕 */
+@media (max-width: 719px) {
+  .home-blog-content .tag-wrapper {
+    max-height: 160px;
+  }
 }
 
 .home-blog-content .tag-wrapper .tag-item {

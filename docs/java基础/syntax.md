@@ -1,6 +1,11 @@
 ---
 title: 2.2 Java 语法基础
 date: 2024-11-25
+tags:
+ - Java
+ - 基础语法
+categories:
+ - Java 自学系列
 ---
 
 # Java 语法基础

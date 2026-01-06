@@ -1,6 +1,11 @@
 ---
 title: 2.8 常用工具类
 date: 2024-11-25
+tags:
+ - Java
+ - 工具类
+categories:
+ - Java 自学系列
 ---
 
 # 常用工具类

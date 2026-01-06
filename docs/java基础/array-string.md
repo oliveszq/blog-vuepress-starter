@@ -3,6 +3,10 @@ title: 2.3 数组与字符串
 date: 2024-11-25
 tags:
  - Java
+ - 数组
+ - 字符串
+categories:
+ - Java 自学系列
 ---
 
 # 数组与字符串
