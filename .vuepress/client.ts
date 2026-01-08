@@ -6,6 +6,7 @@ import IconCategory from './components/IconCategory.vue'
 import IconTag from './components/IconTag.vue'
 import IconSeries from './components/IconSeries.vue'
 import CustomFooter from './components/CustomFooter.vue'
+import SearchBox from './components/SearchBox.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -17,5 +18,7 @@ export default defineClientConfig({
     app.component('IconTag', IconTag)
     app.component('IconSeries', IconSeries)
     app.component('CustomFooter', CustomFooter)
+    // 注册搜索组件
+    app.component('SearchBox', SearchBox)
   },
 })

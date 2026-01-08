@@ -5,6 +5,7 @@ import { getDirname, path } from '@vuepress/utils'
 import { themeConfig } from './config/index'
 import { blogPagePlugin } from './plugin-blog-page-filter'
 import { sakuraFixed } from './plugins/sakura-fixed'
+import { searchPlugin } from './plugins/search-plugin'
 const __dirname = getDirname(import.meta.url)
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -33,6 +34,10 @@ export default defineUserConfig({
   
   // 添加自定义插件
   plugins: [
+    searchPlugin({
+      maxSuggestions: 10,
+      placeholder: '搜索',
+    }),
     blogPagePlugin({
       catalogueInclude: ['blogs', 'docs']
     }),
