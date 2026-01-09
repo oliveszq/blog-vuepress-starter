@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app-K0L0DjBj.js";const r={};function o(c,s){return a(),t("div")}const l=e(r,[["render",o]]),_=JSON.parse('{"path":"/tags/vuepress-theme-reco/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{l as comp,_ as data};

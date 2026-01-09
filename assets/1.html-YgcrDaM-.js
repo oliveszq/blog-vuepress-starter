@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./app-zRBj5qWQ.js";const n={};function c(o,r){return a(),t("div")}const l=e(n,[["render",c]]),i=JSON.parse('{"path":"/tags/lichengbeibanben/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{l as comp,i as data};
