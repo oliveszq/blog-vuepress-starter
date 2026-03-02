@@ -4,12 +4,16 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { getDirname, path } from '@vuepress/utils'
 import { themeConfig } from './config/index'
 import { blogPagePlugin } from './plugin-blog-page-filter'
+import { sakuraFixed } from './plugins/sakura-fixed'
+import { searchPlugin } from './plugins/search-plugin'
 import { oml2dPlugin } from 'vuepress-plugin-oh-my-live2d'
 import { oml2dConfig } from './config/oml2d'
 
 const __dirname = getDirname(import.meta.url)
+const isProd = process.env.NODE_ENV === 'production'
 
 export default defineUserConfig({
+  base: '/',
   // 设置站点语言为中文
   lang: 'zh-CN',
   // 站点标题
@@ -33,9 +37,22 @@ export default defineUserConfig({
   
   // 添加自定义插件
   plugins: [
+    searchPlugin({
+      maxSuggestions: 10,
+      placeholder: '搜索',
+    }),
     blogPagePlugin({
       catalogueInclude: ['blogs', 'docs']
     }),
+    sakuraFixed({
+      // 设置数量 默认 20
+      sakura_num: 20,
+      //是否显示，默认：true
+      sakura_show: true,
+      //层叠z-index值,默认：100，设置为-1确保在背景层
+      sakura_zindex: 100,
+      sakura_img: '/mapleLeaf.png'
+    }) as any,
     oml2dPlugin(oml2dConfig),
   ],
   theme: recoTheme(themeConfig),

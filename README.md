@@ -4,8 +4,9 @@ modules:
   - BannerBrand
   - blog
   - MdContent
-  - Footer
+  - CustomFooter
 bannerBrand:
+  bgImage: '/bg1.gif'
   heroImageStyle: {
     maxWidth: '600px',
     width: '100%',
@@ -13,10 +14,6 @@ bannerBrand:
     margin: '9rem auto 2rem',
     background: '#fff',
     borderRadius: '1rem',
-  }
-  bgImage: '/preview.jpg'
-  bgImageStyle: {
-    height: '1000px'
   }
   title: olivesQ博客
   description: 记录每一步成长，点亮每一刻灵感。

@@ -18,5 +18,9 @@
     "vuepress-plugin-oh-my-live2d": "^0.19.3",
     "vuepress-theme-reco": "2.0.0-rc.26"
   },
+  "devDependencies": {
+    "@anyfork/vuepress-plugin-bgm-player-next": "^0.1.5",
+    "@anyfork/vuepress-plugin-sakura-next": "^0.1.2"
+  },
   "packageManager": "yarn@4.12.0"
 }

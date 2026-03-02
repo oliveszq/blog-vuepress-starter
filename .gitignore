@@ -2,5 +2,4 @@
 .vuepress/.temp
 node_modules
 pnpm-lock.yaml
-yarn.lock
 .yarn/*
