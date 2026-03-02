@@ -4,6 +4,8 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { getDirname, path } from '@vuepress/utils'
 import { themeConfig } from './config/index'
 import { blogPagePlugin } from './plugin-blog-page-filter'
+import { oml2dPlugin } from 'vuepress-plugin-oh-my-live2d'
+import { oml2dConfig } from './config/oml2d'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -33,7 +35,8 @@ export default defineUserConfig({
   plugins: [
     blogPagePlugin({
       catalogueInclude: ['blogs', 'docs']
-    })
+    }),
+    oml2dPlugin(oml2dConfig),
   ],
   theme: recoTheme(themeConfig),
 });
