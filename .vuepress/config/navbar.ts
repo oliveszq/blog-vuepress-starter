@@ -11,5 +11,6 @@ export const navbar: RecoThemeData['navbar'] = [
       { text: "Java", link: "/series/java/" },
     ],
   },
+  { text: '奇闻趣事', link: '/funny', icon: 'IconFunny' },
   { text: '时间轴', link: '/timeline', icon: 'IconTimeLine' },
 ]
