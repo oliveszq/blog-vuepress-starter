@@ -8,6 +8,7 @@ import IconSeries from './components/IconSeries.vue'
 import CustomFooter from './components/CustomFooter.vue'
 import SearchBox from './components/SearchBox.vue'
 import IconFunny from './components/IconFunny.vue'
+import Funny from './layouts/Funny.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -22,5 +23,8 @@ export default defineClientConfig({
     app.component('IconFunny', IconFunny)
     // 注册搜索组件
     app.component('SearchBox', SearchBox)
+  },
+  layouts: {
+    Funny,
   },
 })
