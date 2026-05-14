@@ -176,43 +176,23 @@ const selectedIndex = ref(-1)
 const searchInput = ref<HTMLInputElement | null>(null)
 const searchIndex = ref<any[]>([])
 
-// 加载搜索索引
+// 加载搜索索引（由 search-plugin 在 onPrepared 阶段写入 .vuepress/.temp/search-index.js）
+let indexLoaded = false
 const loadSearchIndex = async () => {
+  if (indexLoaded) return
   try {
-    // 尝试从临时目录加载搜索索引
-    const indexModule = await import(
-      /* @vite-ignore */
-      '@temp/search-index.js'
-    )
+    const indexModule = await import('@temp/search-index.js')
     searchIndex.value = indexModule.default || []
+    indexLoaded = true
   } catch (error) {
-    // 如果加载失败，尝试从页面数据构建索引
-    try {
-      // 从 DOM 中提取页面信息作为备用方案
-      const pages = document.querySelectorAll('a[href^="/"]')
-      const index: any[] = []
-      pages.forEach((link) => {
-        const href = (link as HTMLAnchorElement).href
-        const path = new URL(href).pathname
-        if (path !== '/' && !path.startsWith('/404') && !index.find((i) => i.path === path)) {
-          const title = link.textContent?.trim() || ''
-          if (title) {
-            index.push({
-              title,
-              headers: [],
-              path,
-              content: '',
-            })
-          }
-        }
-      })
-      searchIndex.value = index
-    } catch (fallbackError) {
-      console.warn('搜索索引加载失败:', error, fallbackError)
-      searchIndex.value = []
-    }
+    console.warn('搜索索引加载失败:', error)
+    searchIndex.value = []
   }
 }
+
+// 转义正则特殊字符，避免用户输入 "C++"、"f(x)" 等破坏 RegExp
+const escapeRegExp = (s: string): string =>
+  s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 // 搜索功能
 const search = (searchQuery: string): SearchResult[] => {
@@ -254,8 +234,9 @@ const search = (searchQuery: string): SearchResult[] => {
 
       // 内容匹配
       queryWords.forEach((word) => {
-        const contentMatches = (contentLower.match(new RegExp(word, 'g')) || [])
-          .length
+        const contentMatches = (
+          contentLower.match(new RegExp(escapeRegExp(word), 'g')) || []
+        ).length
         score += contentMatches * 5
       })
 
@@ -277,13 +258,26 @@ const search = (searchQuery: string): SearchResult[] => {
     .map((item) => {
       // 生成摘要
       const content = item.content
-      const queryLower = searchQuery.toLowerCase()
-      const index = content.toLowerCase().indexOf(queryLower)
+      const contentLowerForSnippet = content.toLowerCase()
+
+      // 先尝试用完整 query 定位；找不到时再退化到任一单词
+      let matchIndex = contentLowerForSnippet.indexOf(queryLower)
+      let matchLen = searchQuery.length
+      if (matchIndex === -1) {
+        for (const word of queryWords) {
+          const i = contentLowerForSnippet.indexOf(word)
+          if (i !== -1) {
+            matchIndex = i
+            matchLen = word.length
+            break
+          }
+        }
+      }
 
       let snippet = ''
-      if (index !== -1) {
-        const start = Math.max(0, index - 50)
-        const end = Math.min(content.length, index + searchQuery.length + 50)
+      if (matchIndex !== -1) {
+        const start = Math.max(0, matchIndex - 50)
+        const end = Math.min(content.length, matchIndex + matchLen + 50)
         snippet = content.substring(start, end)
         if (start > 0) snippet = '...' + snippet
         if (end < content.length) snippet = snippet + '...'
@@ -292,9 +286,13 @@ const search = (searchQuery: string): SearchResult[] => {
         if (content.length > 150) snippet += '...'
       }
 
-      // 高亮匹配文本
+      // 高亮匹配文本（先转义 HTML，再注入 <mark>，避免 XSS）
+      snippet = snippet
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
       queryWords.forEach((word) => {
-        const regex = new RegExp(`(${word})`, 'gi')
+        const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi')
         snippet = snippet.replace(regex, '<mark>$1</mark>')
       })
 
