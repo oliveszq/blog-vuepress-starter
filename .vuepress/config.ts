@@ -42,7 +42,7 @@ export default defineUserConfig({
       placeholder: '搜索',
     }),
     blogPagePlugin({
-      catalogueInclude: ['blogs', 'docs']
+      catalogueInclude: ['blogs', 'docs', 'funny']
     }),
     sakuraFixed({
       // 设置数量 默认 20
